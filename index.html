@@ -8,8 +8,22 @@
   <style>
     :root{--bg:#f7fafc;--card:#ffffff;--text:#111827;--sub:#6b7280;--accent:#0ea5e9;--muted:#e5e7eb;}
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--text)}
-    .container{max-width:980px;margin:0 auto;padding:16px}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  background: url('https://images.unsplash.com/photo-1502877338535-766e1452684a') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text);
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.9); /* adds white overlay for readability */
+  border-radius: 16px;
+  padding: 16px;
+  margin: 0 auto;
+  max-width: 980px;
+}
+
     header{display:flex;align-items:center;justify-content:space-between;margin:8px 0 16px}
     h1{font-size:20px;margin:0}
     .sub{color:var(--sub);font-size:12px}
