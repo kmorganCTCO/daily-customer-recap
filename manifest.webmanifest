@@ -1,0 +1,9 @@
+{
+  "name": "Daily Customer Recap",
+  "short_name": "DCR",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7fafc",
+  "theme_color": "#0ea5e9",
+  "icons": []
+}
