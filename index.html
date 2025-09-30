@@ -177,24 +177,16 @@
     <section class="card hidden" id="page2">
       <h2 id="catTitle">2) Details</h2>
       <div class="content">
-        <!-- Shared optional context (kept simple for now) -->
-        <div class="row2">
-          <div>
-            <label for="location">Location / Site</label>
-            <input id="location" placeholder="Store #, site name, or address"/>
-          </div>
-          <div>
-            <label for="po">PO / Reference (optional)</label>
-            <input id="po" placeholder="Optional reference #"/>
-          </div>
-        </div>
-
         <!-- RUN-OUT -->
         <div id="blockRunout" class="catBlock hidden" style="margin-top:10px">
           <h3>Run-out</h3>
 
+          <!-- Location / Site (moved here, above Cause) -->
+          <label for="location">Location / Site</label>
+          <input id="location" placeholder="Store #, site name, or address"/>
+
           <!-- Cause (Required) -->
-          <label for="runOutCause">Cause (required)</label>
+          <label for="runOutCause" style="margin-top:6px">Cause (required)</label>
           <select id="runOutCause" required>
             <option value="">Select…</option>
             <option>Dispatch error</option>
@@ -206,10 +198,6 @@
           <!-- Order # (Required, numbers only) -->
           <label for="runOutOrder" style="margin-top:6px">Order # (required)</label>
           <input id="runOutOrder" type="number" inputmode="numeric" placeholder="Numbers only" required />
-
-          <!-- PO# (Optional) -->
-          <label for="runOutPO" style="margin-top:6px">PO# (optional)</label>
-          <input id="runOutPO" placeholder="If applicable" />
 
           <!-- Delivery Window Start (Required, military time dropdown) -->
           <label for="runOutWindowStart" style="margin-top:6px">Delivery Window Start (required)</label>
@@ -223,14 +211,14 @@
           <label for="runOutComments" style="margin-top:6px">Comments (required)</label>
           <textarea id="runOutComments" rows="3" required placeholder="Add details…"></textarea>
 
-          <!-- Upload (Optional) — placeholder only while we’re local-only -->
+          <!-- Upload (Optional — placeholder while local-only) -->
           <label for="runOutFiles" style="margin-top:6px">Upload any applicable detail (optional)</label>
           <input id="runOutFiles" type="file" multiple
                  accept=".pdf,.eml,.msg,.jpg,.jpeg,.png,.gif,.heic,.tif,.tiff,.bmp" />
           <div class="small">Note: files won’t be stored until we connect a backend; this is just a placeholder for now.</div>
         </div>
 
-        <!-- Placeholder blocks for other categories (we’ll build these next) -->
+        <!-- Other categories (placeholders for now) -->
         <div id="blockRolled" class="catBlock hidden" style="margin-top:10px"><h3>Rolled Load</h3><div class="small">We’ll set this up next.</div></div>
         <div id="blockCanceled" class="catBlock hidden" style="margin-top:10px"><h3>Canceled Load</h3><div class="small">We’ll set this up next.</div></div>
         <div id="blockDetention" class="catBlock hidden" style="margin-top:10px"><h3>Detention</h3><div class="small">We’ll set this up next.</div></div>
@@ -257,14 +245,14 @@
   </div>
 
 <script>
-  // ------- Utilities -------
+  // ---------- Utilities ----------
   const $ = (id)=>document.getElementById(id);
   const LS_KEY = 'dcr.items.v1';
   let items = JSON.parse(localStorage.getItem(LS_KEY)||'[]');
   function saveLocal(){ localStorage.setItem(LS_KEY, JSON.stringify(items)); }
   function showPage(id){ ['page1','page2'].forEach(p => $(p).classList.add('hidden')); $(id).classList.remove('hidden'); }
 
-  // Fill military-time dropdowns (00:00 .. 23:30)
+  // Military-time dropdown filler (00:00..23:30; change step to 60 for hourly)
   function fillMilitaryTimes(selectEl, stepMinutes = 30) {
     selectEl.innerHTML = '<option value="">Select…</option>';
     for (let h=0; h<24; h++){
@@ -279,7 +267,7 @@
     }
   }
 
-  // ------- Init -------
+  // ---------- Init ----------
   $('date').value = new Date().toISOString().slice(0,10);
   fillMilitaryTimes($('runOutWindowStart'), 30);
   fillMilitaryTimes($('runOutWindowEnd'), 30);
@@ -289,10 +277,8 @@
       alert('Please fill all the basics first.'); return;
     }
     $('catTitle').textContent = '2) Details — ' + $('category').value;
-    // Hide all blocks
     ['blockRunout','blockRolled','blockCanceled','blockDetention','blockIncident','blockAssist']
       .forEach(id=> $(id).classList.add('hidden'));
-    // Show selected block
     const cat = $('category').value;
     if (cat==='Run-out') $('blockRunout').classList.remove('hidden');
     if (cat==='Rolled Load') $('blockRolled').classList.remove('hidden');
@@ -306,26 +292,30 @@
   $('back').onclick = ()=> showPage('page1');
   $('btnClear').onclick = ()=> document.querySelector('form')?.reset();
 
-  // ------- Export CSV (local cache) -------
+  // ---------- Export CSV (local cache) ----------
   $('btnExport').onclick = ()=>{
     const rows = items.map(e=>[
       e.date, e.terminal, e.customer, e.category,
-      e.location||'', e.po||'', e.notes||'',
-      // Run-out specifics
-      e.cause||'', e.orderNumber||'', e.poNumber||'', e.windowStart||'', e.windowEnd||'', e.runoutComments||''
+      e.location||'',
+      e.cause||'', e.orderNumber||'',
+      e.windowStart||'', e.windowEnd||'',
+      e.runoutComments||''
     ]);
     const header = [
-      'Date','Terminal','Customer','Category','Location','PO(ref)','Notes',
-      'Cause','Order#','PO#','WindowStart','WindowEnd','RunoutComments'
+      'Date','Terminal','Customer','Category','Location',
+      'Cause','Order#','WindowStart','WindowEnd','Comments'
     ];
-    const csv = [header, ...rows].map(r=>r.map(x=> String(x).includes(',') ? `"${String(x).replace(/"/g,'""')}"` : String(x)).join(',')).join('\n');
+    const csv = [header, ...rows].map(r=>r.map(x=>{
+      const s = String(x ?? '');
+      return s.includes(',') ? `"${s.replace(/"/g,'""')}"` : s;
+    }).join(',')).join('\n');
     const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a'); a.href=url; a.download='daily_customer_recap.csv';
     document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
   };
 
-  // ------- Render list -------
+  // ---------- Render list ----------
   function renderList(){
     const list = $('list'); list.innerHTML='';
     if (!items.length){ list.innerHTML = '<div class="small">No entries yet.</div>'; return; }
@@ -337,7 +327,7 @@
     });
   }
 
-  // ------- Submit (local-only) -------
+  // ---------- Submit (local-only) ----------
   $('submit').onclick = ()=>{
     const base = {
       date: $('date').value,
@@ -345,17 +335,13 @@
       customer: $('customer').value,
       category: $('category').value
     };
-    const extra = {
-      location: $('location').value,
-      po: $('po').value,
-      notes: '' // keeping this for future general notes if needed
-    };
+    const extra = {};
 
     // RUN-OUT validations + mapping
     if (base.category === 'Run-out') {
+      const location = $('location').value;
       const cause    = $('runOutCause').value;
       const orderNum = $('runOutOrder').value;
-      const poNum    = $('runOutPO').value;
       const winStart = $('runOutWindowStart').value;
       const winEnd   = $('runOutWindowEnd').value;
       const comments = $('runOutComments').value.trim();
@@ -366,14 +352,14 @@
       if (!winEnd)   return alert('Please select Delivery Window End.');
       if (!comments) return alert('Please enter Comments.');
 
+      extra.location       = location || '';
       extra.cause          = cause;
       extra.orderNumber    = orderNum;
-      extra.poNumber       = poNum || '';
       extra.windowStart    = winStart;
       extra.windowEnd      = winEnd;
       extra.runoutComments = comments;
 
-      // File picker present but ignored in local-only mode (we’ll wire it up later)
+      // File input present but ignored while local-only (to be wired up later)
     }
 
     const payload = Object.assign(
@@ -383,16 +369,16 @@
 
     items.push(payload); saveLocal(); renderList();
     $('status').textContent = 'Status: saved locally';
-    // Clear Run-out fields (keep Basics for next entry)
+
+    // Clear Run-out fields (keep Basics for speed)
+    $('location').value = '';
     $('runOutCause').value = '';
     $('runOutOrder').value = '';
-    $('runOutPO').value = '';
     $('runOutWindowStart').value = '';
     $('runOutWindowEnd').value = '';
     $('runOutComments').value = '';
-    $('runOutFiles').value = '';
+    if ($('runOutFiles')) $('runOutFiles').value = '';
 
-    // Back to page 1
     showPage('page1');
   };
 
