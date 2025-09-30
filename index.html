@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Daily Customer Recap</title>
   <meta name="theme-color" content="#0ea5e9">
-  <link rel="manifest" href="manifest.webmanifest">
   <style>
     :root{--bg:#f7fafc;--card:#ffffff;--text:#111827;--sub:#6b7280;--accent:#0ea5e9;--muted:#e5e7eb;}
     *{box-sizing:border-box}
@@ -33,7 +32,7 @@
     <header>
       <div>
         <h1>Daily Customer Recap</h1>
-        <div class="sub">Step 1: Pick date, terminal, customer, and category. Step 2: Fill details on the next page. Step 3: Submit.</div>
+        <div class="sub">Step 1: Pick date, terminal, customer, and category. Step 2: Fill details for that category. Step 3: Submit.</div>
       </div>
       <div class="toolbar">
         <button id="btnExport">Export CSV</button>
@@ -41,6 +40,7 @@
       </div>
     </header>
 
+    <!-- PAGE 1: Basics -->
     <section class="card" id="page1">
       <h2>1) Basics</h2>
       <div class="content">
@@ -53,7 +53,10 @@
             <label for="terminal">Terminal</label>
             <select id="terminal" required>
               <option value="">Select…</option>
-              <option>ABILEN</option><option>ALBUQU</option><option>AMARIL</option><option>AUSTIN</option><option>BROWNS</option><option>CORPUS</option><option>EDINBU</option><option>ELPASO</option><option>FORTWOHOUSTO</option><option>IMPERI</option><option>LAREDO</option><option>PHOENI</option><option>SANANT</option><option>SANDIE</option><option>TUCSON</option><option>VICTOR</option><option>WACO</option>
+              <option>ABILEN</option><option>ALBUQU</option><option>AMARIL</option><option>AUSTIN</option>
+              <option>BROWNS</option><option>CORPUS</option><option>EDINBU</option><option>ELPASO</option>
+              <option>FORTWOHOUSTO</option><option>IMPERI</option><option>LAREDO</option><option>PHOENI</option>
+              <option>SANANT</option><option>SANDIE</option><option>TUCSON</option><option>VICTOR</option><option>WACO</option>
             </select>
           </div>
         </div>
@@ -63,14 +66,104 @@
             <label for="customer">Customer</label>
             <select id="customer" required>
               <option value="">Select…</option>
-              <option>Associated Energy Group</option><option>AUSTIN TERMINAL</option><option>Avfuel Corporation</option><option>AZIZ Quick Stop LLC</option><option>Biourja Trading LLC</option><option>Bluebonnet Petroleum Inc</option><option>Boyett Petroleum</option><option>Brad Hall & Associates</option><option>Brookshire Brothers</option><option>BW Gas & Convenience DBA Yesway</option><option>Chevron U.S.A.</option><option>CIRCLE K 4089</option><option>Circle K Stores</option><option>Citgo Petroleum Corp.</option><option>Cosby Oil Company</option><option>Defense Energy Support</option><option>Diamond Shamrock Refining Co LP</option><option>ED STAUB & SONS PETROLEUM, INC</option><option>ELAN FUELS LLC</option><option>Epic Aviation</option><option>FAST STOP INC</option><option>Flint Hills Resources</option><option>Fuel Masters LLC</option><option>GLOBAL PARTNERS L.P.</option><option>Gold Star Petroleum, Inc.</option><option>GPM Petroleum Empire Petroleum</option><option>GPM Petroleum LLC</option><option>HEB - Services Co. Accounting</option><option>JUNCTION FUELS LLC</option><option>KAG LOGISTICS 7-11</option><option>KAG Logistics/Kenan Advantage</option><option>KAG Logistics/Kenan Advantage AAFES</option><option>Landmark Industries</option><option>LB & B Associates Inc</option><option>Lehigh Gas Wholesale LLC</option><option>Loves Country Stores INC.</option><option>Mansfield Oil Company</option><option>Marathon Petroleum Company LP Supply and Trading LLC</option><option>Marathon Tesoro Petroleum</option><option>Marathon Tesoro Petroleum Accessorials</option><option>Marathon WNR Product Transport</option><option>McCraw Oil Company</option><option>MERCFUEL, LLC</option><option>Merrimac Energy Group</option><option>MGK Logistics LLC</option><option>Murphy USA</option><option>NEVADA FUEL DISTRIBUTORS LLC</option><option>New Distributing Company, Inc.</option><option>NEW MEXICO COMPANY OPERATIONS LLC</option><option>NGL Crude Logistics LLC</option><option>NORTHSTAR PETROLEUM DISTRIBUTORS INC</option><option>Octane Fuels</option><option>Offen Petroleum LLC</option><option>Petroleum  Traders</option><option>PFT ALEXANDER, INC.</option><option>Pilot Travel Centers LLC</option><option>Pinnacle Petroleum</option><option>Poet Ethanol Products LLC</option><option>Port Isabel Logistical Offshore Terminal, Inc.</option><option>Potent Petroleum LLC</option><option>Pro Petroleum</option><option>PSL SERVICES INC.</option><option>River City Petroleum</option><option>SC Fuels</option><option>Senergy Petroleum</option><option>SIGNATURE ENERGY</option><option>SPRING PARTNERS LICENSING LLC</option><option>Stroeher & Son INC.</option><option>Sun Coast Resources,Inc.</option><option>Sunoco LP Powertrack</option><option>Sunshine Petroleum Distributors</option><option>SUPREME OIL CO</option><option>Supreme Oil Co.</option><option>TAC Energy LLC</option><option>Texas Petroleum Group, INC</option><option>Tex-Con Oil Company</option><option>The Jankovich Company</option><option>Thomas Petroleum,LTD.</option><option>Valero Bill Greehey</option><option>Valero Energy Corp- Jet Fuel</option><option>Valero Energy Ethanol</option><option>Valero Marketing Supply Wholesale</option><option>VALHALLA FUELS</option><option>Victron Energy</option><option>WEST DIRECT OIL LLC</option><option>World Fuel Services, Inc.</option>
+              <option>Associated Energy Group</option>
+              <option>AUSTIN TERMINAL</option>
+              <option>Avfuel Corporation</option>
+              <option>AZIZ Quick Stop LLC</option>
+              <option>Biourja Trading LLC</option>
+              <option>Bluebonnet Petroleum Inc</option>
+              <option>Boyett Petroleum</option>
+              <option>Brad Hall & Associates</option>
+              <option>Brookshire Brothers</option>
+              <option>BW Gas & Convenience DBA Yesway</option>
+              <option>Chevron U.S.A.</option>
+              <option>CIRCLE K 4089</option>
+              <option>Circle K Stores</option>
+              <option>Citgo Petroleum Corp.</option>
+              <option>Cosby Oil Company</option>
+              <option>Defense Energy Support</option>
+              <option>Diamond Shamrock Refining Co LP</option>
+              <option>ED STAUB & SONS PETROLEUM, INC</option>
+              <option>ELAN FUELS LLC</option>
+              <option>Epic Aviation</option>
+              <option>FAST STOP INC</option>
+              <option>Flint Hills Resources</option>
+              <option>Fuel Masters LLC</option>
+              <option>GLOBAL PARTNERS L.P.</option>
+              <option>Gold Star Petroleum, Inc.</option>
+              <option>GPM Petroleum Empire Petroleum</option>
+              <option>GPM Petroleum LLC</option>
+              <option>HEB - Services Co. Accounting</option>
+              <option>JUNCTION FUELS LLC</option>
+              <option>KAG LOGISTICS 7-11</option>
+              <option>KAG Logistics/Kenan Advantage</option>
+              <option>KAG Logistics/Kenan Advantage AAFES</option>
+              <option>Landmark Industries</option>
+              <option>LB & B Associates Inc</option>
+              <option>Lehigh Gas Wholesale LLC</option>
+              <option>Loves Country Stores INC.</option>
+              <option>Mansfield Oil Company</option>
+              <option>Marathon Petroleum Company LP Supply and Trading LLC</option>
+              <option>Marathon Tesoro Petroleum</option>
+              <option>Marathon Tesoro Petroleum Accessorials</option>
+              <option>Marathon WNR Product Transport</option>
+              <option>McCraw Oil Company</option>
+              <option>MERCFUEL, LLC</option>
+              <option>Merrimac Energy Group</option>
+              <option>MGK Logistics LLC</option>
+              <option>Murphy USA</option>
+              <option>NEVADA FUEL DISTRIBUTORS LLC</option>
+              <option>New Distributing Company, Inc.</option>
+              <option>NEW MEXICO COMPANY OPERATIONS LLC</option>
+              <option>NGL Crude Logistics LLC</option>
+              <option>NORTHSTAR PETROLEUM DISTRIBUTORS INC</option>
+              <option>Octane Fuels</option>
+              <option>Offen Petroleum LLC</option>
+              <option>Petroleum  Traders</option>
+              <option>PFT ALEXANDER, INC.</option>
+              <option>Pilot Travel Centers LLC</option>
+              <option>Pinnacle Petroleum</option>
+              <option>Poet Ethanol Products LLC</option>
+              <option>Port Isabel Logistical Offshore Terminal, Inc.</option>
+              <option>Potent Petroleum LLC</option>
+              <option>Pro Petroleum</option>
+              <option>PSL SERVICES INC.</option>
+              <option>River City Petroleum</option>
+              <option>SC Fuels</option>
+              <option>Senergy Petroleum</option>
+              <option>SIGNATURE ENERGY</option>
+              <option>SPRING PARTNERS LICENSING LLC</option>
+              <option>Stroeher & Son INC.</option>
+              <option>Sun Coast Resources,Inc.</option>
+              <option>Sunoco LP Powertrack</option>
+              <option>Sunshine Petroleum Distributors</option>
+              <option>SUPREME OIL CO</option>
+              <option>Supreme Oil Co.</option>
+              <option>TAC Energy LLC</option>
+              <option>Texas Petroleum Group, INC</option>
+              <option>Tex-Con Oil Company</option>
+              <option>The Jankovich Company</option>
+              <option>Thomas Petroleum,LTD.</option>
+              <option>Valero Bill Greehey</option>
+              <option>Valero Energy Corp- Jet Fuel</option>
+              <option>Valero Energy Ethanol</option>
+              <option>Valero Marketing Supply Wholesale</option>
+              <option>VALHALLA FUELS</option>
+              <option>Victron Energy</option>
+              <option>WEST DIRECT OIL LLC</option>
+              <option>World Fuel Services, Inc.</option>
             </select>
           </div>
           <div>
             <label for="category">Category</label>
             <select id="category" required>
               <option value="">Select…</option>
-              <option>Run-out</option><option>Rolled Load</option><option>Canceled Load</option><option>Detention</option><option>Incident</option><option>Requested assistance from customer</option>
+              <option>Run-out</option>
+              <option>Rolled Load</option>
+              <option>Canceled Load</option>
+              <option>Detention</option>
+              <option>Incident</option>
+              <option>Requested assistance from customer</option>
             </select>
           </div>
         </div>
@@ -81,9 +174,11 @@
       </div>
     </section>
 
+    <!-- PAGE 2: Category-specific -->
     <section class="card hidden" id="page2">
       <h2 id="catTitle">2) Details</h2>
       <div class="content">
+        <!-- Shared optional context (kept simple for now) -->
         <div class="row2">
           <div>
             <label for="location">Location / Site</label>
@@ -95,88 +190,53 @@
           </div>
         </div>
 
-      <!-- RUN-OUT -->
-<div id="blockRunout" class="catBlock hidden" style="margin-top:10px">
-  <h3>Run-out</h3>
+        <!-- RUN-OUT -->
+        <div id="blockRunout" class="catBlock hidden" style="margin-top:10px">
+          <h3>Run-out</h3>
 
-  <!-- Cause (Required) -->
-  <label for="runOutCause">Cause (required)</label>
-  <select id="runOutCause" required>
-    <option value="">Select…</option>
-    <option>Dispatch error</option>
-    <option>Capacity</option>
-    <option>No Allocation</option>
-    <option>Rack Down</option>
-  </select>
+          <!-- Cause (Required) -->
+          <label for="runOutCause">Cause (required)</label>
+          <select id="runOutCause" required>
+            <option value="">Select…</option>
+            <option>Dispatch error</option>
+            <option>Capacity</option>
+            <option>No Allocation</option>
+            <option>Rack Down</option>
+          </select>
 
-  <!-- Order # (Required, numbers only) -->
-  <label for="runOutOrder" style="margin-top:6px">Order # (required)</label>
-  <input id="runOutOrder" type="number" inputmode="numeric" placeholder="Numbers only" required />
+          <!-- Order # (Required, numbers only) -->
+          <label for="runOutOrder" style="margin-top:6px">Order # (required)</label>
+          <input id="runOutOrder" type="number" inputmode="numeric" placeholder="Numbers only" required />
 
-  <!-- PO# (Optional) -->
-  <label for="runOutPO" style="margin-top:6px">PO# (optional)</label>
-  <input id="runOutPO" placeholder="If applicable" />
+          <!-- PO# (Optional) -->
+          <label for="runOutPO" style="margin-top:6px">PO# (optional)</label>
+          <input id="runOutPO" placeholder="If applicable" />
 
-  <!-- Delivery Window Start (Required, military time dropdown) -->
-  <label for="runOutWindowStart" style="margin-top:6px">Delivery Window Start (required)</label>
-  <select id="runOutWindowStart" required></select>
+          <!-- Delivery Window Start (Required, military time dropdown) -->
+          <label for="runOutWindowStart" style="margin-top:6px">Delivery Window Start (required)</label>
+          <select id="runOutWindowStart" required></select>
 
-  <!-- Delivery Window End (Required, military time dropdown) -->
-  <label for="runOutWindowEnd" style="margin-top:6px">Delivery Window End (required)</label>
-  <select id="runOutWindowEnd" required></select>
+          <!-- Delivery Window End (Required, military time dropdown) -->
+          <label for="runOutWindowEnd" style="margin-top:6px">Delivery Window End (required)</label>
+          <select id="runOutWindowEnd" required></select>
 
-  <!-- Comments (Required) -->
-  <label for="runOutComments" style="margin-top:6px">Comments (required)</label>
-  <textarea id="runOutComments" rows="3" required placeholder="Add details…"></textarea>
+          <!-- Comments (Required) -->
+          <label for="runOutComments" style="margin-top:6px">Comments (required)</label>
+          <textarea id="runOutComments" rows="3" required placeholder="Add details…"></textarea>
 
-  <!-- Upload (Optional) — placeholder only while we’re local-only -->
-  <label for="runOutFiles" style="margin-top:6px">Upload any applicable detail (optional)</label>
-  <input id="runOutFiles" type="file" multiple
-         accept=".pdf,.eml,.msg,.jpg,.jpeg,.png,.gif,.heic,.tif,.tiff,.bmp" />
-  <div class="small">Note: files won’t be stored until we connect a backend; this is just a placeholder for now.</div>
-</div>
-
-
-        <div id="blockRolled" class="catBlock hidden" style="margin-top:10px">
-          <h3>Rolled Load</h3>
-          <label for="rolledReason">Reason</label>
-          <textarea id="rolledReason" rows="3" placeholder="Explain why the load was rolled"></textarea>
+          <!-- Upload (Optional) — placeholder only while we’re local-only -->
+          <label for="runOutFiles" style="margin-top:6px">Upload any applicable detail (optional)</label>
+          <input id="runOutFiles" type="file" multiple
+                 accept=".pdf,.eml,.msg,.jpg,.jpeg,.png,.gif,.heic,.tif,.tiff,.bmp" />
+          <div class="small">Note: files won’t be stored until we connect a backend; this is just a placeholder for now.</div>
         </div>
 
-        <div id="blockCanceled" class="catBlock hidden" style="margin-top:10px">
-          <h3>Canceled Load</h3>
-          <label for="canceledWhy">Why was it canceled?</label>
-          <textarea id="canceledWhy" rows="3"></textarea>
-        </div>
-
-        <div id="blockDetention" class="catBlock hidden" style="margin-top:10px">
-          <h3>Detention</h3>
-          <label for="detentionStart">Start Time</label>
-          <input id="detentionStart" type="datetime-local"/>
-          <label for="detentionEnd" style="margin-top:6px">End Time</label>
-          <input id="detentionEnd" type="datetime-local"/>
-          <label for="detentionNotes" style="margin-top:6px">Notes</label>
-          <textarea id="detentionNotes" rows="3"></textarea>
-        </div>
-
-        <div id="blockIncident" class="catBlock hidden" style="margin-top:10px">
-          <h3>Incident</h3>
-          <label for="incidentType">Type</label>
-          <input id="incidentType" placeholder="spill, damage, etc."/>
-          <label for="incidentNotes" style="margin-top:6px">Notes</label>
-          <textarea id="incidentNotes" rows="3"></textarea>
-        </div>
-
-        <div id="blockAssist" class="catBlock hidden" style="margin-top:10px">
-          <h3>Requested assistance from customer</h3>
-          <label for="assistWhat">What was requested?</label>
-          <textarea id="assistWhat" rows="3"></textarea>
-        </div>
-
-        <div style="margin-top:10px">
-          <label for="notes">Additional Notes</label>
-          <textarea id="notes" rows="3" placeholder="Anything else we should know"></textarea>
-        </div>
+        <!-- Placeholder blocks for other categories (we’ll build these next) -->
+        <div id="blockRolled" class="catBlock hidden" style="margin-top:10px"><h3>Rolled Load</h3><div class="small">We’ll set this up next.</div></div>
+        <div id="blockCanceled" class="catBlock hidden" style="margin-top:10px"><h3>Canceled Load</h3><div class="small">We’ll set this up next.</div></div>
+        <div id="blockDetention" class="catBlock hidden" style="margin-top:10px"><h3>Detention</h3><div class="small">We’ll set this up next.</div></div>
+        <div id="blockIncident" class="catBlock hidden" style="margin-top:10px"><h3>Incident</h3><div class="small">We’ll set this up next.</div></div>
+        <div id="blockAssist" class="catBlock hidden" style="margin-top:10px"><h3>Requested assistance from customer</h3><div class="small">We’ll set this up next.</div></div>
 
         <div class="row2" style="margin-top:12px">
           <button id="back">← Back</button>
@@ -191,40 +251,84 @@
     <section class="card">
       <h2>Entries (this device cache)</h2>
       <div class="content">
-        <div class="small">When online, each submit also writes to your shared Google Sheet.</div>
+        <div class="small">Local-only preview for now. We’ll wire up Excel/SharePoint/OneDrive after all pages are set.</div>
         <div id="list"></div>
       </div>
     </section>
   </div>
 
 <script>
-  const BACKEND_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+  // ------- Utilities -------
   const $ = (id)=>document.getElementById(id);
   const LS_KEY = 'dcr.items.v1';
   let items = JSON.parse(localStorage.getItem(LS_KEY)||'[]');
   function saveLocal(){ localStorage.setItem(LS_KEY, JSON.stringify(items)); }
   function showPage(id){ ['page1','page2'].forEach(p => $(p).classList.add('hidden')); $(id).classList.remove('hidden'); }
 
-  document.getElementById('date').value = new Date().toISOString().slice(0,10);
+  // Fill military-time dropdowns (00:00 .. 23:30)
+  function fillMilitaryTimes(selectEl, stepMinutes = 30) {
+    selectEl.innerHTML = '<option value="">Select…</option>';
+    for (let h=0; h<24; h++){
+      for (let m=0; m<60; m+=stepMinutes){
+        const hh = String(h).padStart(2,'0');
+        const mm = String(m).padStart(2,'0');
+        const v = `${hh}:${mm}`;
+        const opt = document.createElement('option');
+        opt.value = v; opt.textContent = v;
+        selectEl.appendChild(opt);
+      }
+    }
+  }
 
-  document.getElementById('next').onclick = ()=>{
-    if(!document.getElementById('date').value || !document.getElementById('terminal').value || !document.getElementById('customer').value || !document.getElementById('category').value){ alert('Please fill all the basics first.'); return; }
-    document.getElementById('catTitle').textContent = '2) Details — ' + document.getElementById('category').value;
-    ['blockRunout','blockRolled','blockCanceled','blockDetention','blockIncident','blockAssist'].forEach(id=> document.getElementById(id).classList.add('hidden'));
-    const cat = document.getElementById('category').value;
-    if (cat==='Run-out') document.getElementById('blockRunout').classList.remove('hidden');
-    if (cat==='Rolled Load') document.getElementById('blockRolled').classList.remove('hidden');
-    if (cat==='Canceled Load') document.getElementById('blockCanceled').classList.remove('hidden');
-    if (cat==='Detention') document.getElementById('blockDetention').classList.remove('hidden');
-    if (cat==='Incident') document.getElementById('blockIncident').classList.remove('hidden');
-    if (cat==='Requested assistance from customer') document.getElementById('blockAssist').classList.remove('hidden');
+  // ------- Init -------
+  $('date').value = new Date().toISOString().slice(0,10);
+  fillMilitaryTimes($('runOutWindowStart'), 30);
+  fillMilitaryTimes($('runOutWindowEnd'), 30);
+
+  $('next').onclick = ()=>{
+    if(!$('date').value || !$('terminal').value || !$('customer').value || !$('category').value){
+      alert('Please fill all the basics first.'); return;
+    }
+    $('catTitle').textContent = '2) Details — ' + $('category').value;
+    // Hide all blocks
+    ['blockRunout','blockRolled','blockCanceled','blockDetention','blockIncident','blockAssist']
+      .forEach(id=> $(id).classList.add('hidden'));
+    // Show selected block
+    const cat = $('category').value;
+    if (cat==='Run-out') $('blockRunout').classList.remove('hidden');
+    if (cat==='Rolled Load') $('blockRolled').classList.remove('hidden');
+    if (cat==='Canceled Load') $('blockCanceled').classList.remove('hidden');
+    if (cat==='Detention') $('blockDetention').classList.remove('hidden');
+    if (cat==='Incident') $('blockIncident').classList.remove('hidden');
+    if (cat==='Requested assistance from customer') $('blockAssist').classList.remove('hidden');
     showPage('page2');
   };
-  document.getElementById('back').onclick = ()=> showPage('page1');
-  document.getElementById('btnClear').onclick = ()=> document.querySelector('form')?.reset();
 
+  $('back').onclick = ()=> showPage('page1');
+  $('btnClear').onclick = ()=> document.querySelector('form')?.reset();
+
+  // ------- Export CSV (local cache) -------
+  $('btnExport').onclick = ()=>{
+    const rows = items.map(e=>[
+      e.date, e.terminal, e.customer, e.category,
+      e.location||'', e.po||'', e.notes||'',
+      // Run-out specifics
+      e.cause||'', e.orderNumber||'', e.poNumber||'', e.windowStart||'', e.windowEnd||'', e.runoutComments||''
+    ]);
+    const header = [
+      'Date','Terminal','Customer','Category','Location','PO(ref)','Notes',
+      'Cause','Order#','PO#','WindowStart','WindowEnd','RunoutComments'
+    ];
+    const csv = [header, ...rows].map(r=>r.map(x=> String(x).includes(',') ? `"${String(x).replace(/"/g,'""')}"` : String(x)).join(',')).join('\n');
+    const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href=url; a.download='daily_customer_recap.csv';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  };
+
+  // ------- Render list -------
   function renderList(){
-    const list = document.getElementById('list'); list.innerHTML='';
+    const list = $('list'); list.innerHTML='';
     if (!items.length){ list.innerHTML = '<div class="small">No entries yet.</div>'; return; }
     items.slice().reverse().forEach(e=>{
       const div = document.createElement('div');
@@ -234,35 +338,65 @@
     });
   }
 
-  async function submitToBackend(payload){
-    if (!BACKEND_URL.startsWith('http')) return { ok:false, offline:true };
-    try{ const r = await fetch(BACKEND_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)}); return await r.json(); }
-    catch(e){ return { ok:false, offline:true, error: String(e) }; }
-  }
+  // ------- Submit (local-only) -------
+  $('submit').onclick = ()=>{
+    const base = {
+      date: $('date').value,
+      terminal: $('terminal').value,
+      customer: $('customer').value,
+      category: $('category').value
+    };
+    const extra = {
+      location: $('location').value,
+      po: $('po').value,
+      notes: '' // keeping this for future general notes if needed
+    };
 
-  document.getElementById('submit').onclick = async ()=>{
-    const base = { date:document.getElementById('date').value, terminal:document.getElementById('terminal').value, customer:document.getElementById('customer').value, category:document.getElementById('category').value };
-    const extra = { location:document.getElementById('location').value, po:document.getElementById('po').value, notes:document.getElementById('notes').value };
-    const cat = base.category;
-    if (cat==='Run-out'){ extra.runOutProduct=document.getElementById('runOutProduct').value; extra.runOutEta=document.getElementById('runOutEta').value; }
-    if (cat==='Rolled Load'){ extra.rolledReason=document.getElementById('rolledReason').value; }
-    if (cat==='Canceled Load'){ extra.canceledWhy=document.getElementById('canceledWhy').value; }
-    if (cat==='Detention'){ extra.detentionStart=document.getElementById('detentionStart').value; extra.detentionEnd=document.getElementById('detentionEnd').value; extra.detentionNotes=document.getElementById('detentionNotes').value; }
-    if (cat==='Incident'){ extra.incidentType=document.getElementById('incidentType').value; extra.incidentNotes=document.getElementById('incidentNotes').value; }
-    if (cat==='Requested assistance from customer'){ extra.assistWhat=document.getElementById('assistWhat').value; }
+    // RUN-OUT validations + mapping
+    if (base.category === 'Run-out') {
+      const cause    = $('runOutCause').value;
+      const orderNum = $('runOutOrder').value;
+      const poNum    = $('runOutPO').value;
+      const winStart = $('runOutWindowStart').value;
+      const winEnd   = $('runOutWindowEnd').value;
+      const comments = $('runOutComments').value.trim();
 
-    const payload = Object.assign({ id: (crypto.randomUUID? crypto.randomUUID(): String(Date.now())), at: new Date().toISOString() }, base, extra);
+      if (!cause)    return alert('Please select a Cause.');
+      if (!orderNum) return alert('Please enter Order # (numbers only).');
+      if (!winStart) return alert('Please select Delivery Window Start.');
+      if (!winEnd)   return alert('Please select Delivery Window End.');
+      if (!comments) return alert('Please enter Comments.');
+
+      extra.cause          = cause;
+      extra.orderNumber    = orderNum;
+      extra.poNumber       = poNum || '';
+      extra.windowStart    = winStart;
+      extra.windowEnd      = winEnd;
+      extra.runoutComments = comments;
+
+      // File picker present but ignored in local-only mode (we’ll wire it up later)
+    }
+
+    const payload = Object.assign(
+      { id: (crypto.randomUUID? crypto.randomUUID(): String(Date.now())), at: new Date().toISOString() },
+      base, extra
+    );
+
     items.push(payload); saveLocal(); renderList();
-    document.getElementById('status').textContent = 'Status: sending…';
-    const res = await submitToBackend(payload);
-    if (res.ok) document.getElementById('status').textContent = 'Status: saved to Google Sheet';
-    else if (res.offline) document.getElementById('status').textContent = 'Status: offline – will need to resend later';
-    else document.getElementById('status').textContent = 'Status: error – ' + (res.error||'unknown');
-    document.querySelectorAll('#page2 input, #page2 textarea').forEach(el=> el.value='');
+    $('status').textContent = 'Status: saved locally';
+    // Clear Run-out fields (keep Basics for next entry)
+    $('runOutCause').value = '';
+    $('runOutOrder').value = '';
+    $('runOutPO').value = '';
+    $('runOutWindowStart').value = '';
+    $('runOutWindowEnd').value = '';
+    $('runOutComments').value = '';
+    $('runOutFiles').value = '';
+
+    // Back to page 1
     showPage('page1');
   };
 
-  if ('serviceWorker' in navigator) { window.addEventListener('load', ()=> navigator.serviceWorker.register('./sw.js')); }
   renderList();
 </script>
 </body>
