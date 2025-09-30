@@ -95,13 +95,47 @@
           </div>
         </div>
 
-        <div id="blockRunout" class="catBlock hidden" style="margin-top:10px">
-          <h3>Run-out</h3>
-          <label for="runOutProduct">Product</label>
-          <input id="runOutProduct" placeholder="e.g., UNL / DSL / JET"/>
-          <label for="runOutEta" style="margin-top:6px">Estimated Refill Time</label>
-          <input id="runOutEta" type="datetime-local"/>
-        </div>
+      <!-- RUN-OUT -->
+<div id="blockRunout" class="catBlock hidden" style="margin-top:10px">
+  <h3>Run-out</h3>
+
+  <!-- Cause (Required) -->
+  <label for="runOutCause">Cause (required)</label>
+  <select id="runOutCause" required>
+    <option value="">Select…</option>
+    <option>Dispatch error</option>
+    <option>Capacity</option>
+    <option>No Allocation</option>
+    <option>Rack Down</option>
+  </select>
+
+  <!-- Order # (Required, numbers only) -->
+  <label for="runOutOrder" style="margin-top:6px">Order # (required)</label>
+  <input id="runOutOrder" type="number" inputmode="numeric" placeholder="Numbers only" required />
+
+  <!-- PO# (Optional) -->
+  <label for="runOutPO" style="margin-top:6px">PO# (optional)</label>
+  <input id="runOutPO" placeholder="If applicable" />
+
+  <!-- Delivery Window Start (Required, military time dropdown) -->
+  <label for="runOutWindowStart" style="margin-top:6px">Delivery Window Start (required)</label>
+  <select id="runOutWindowStart" required></select>
+
+  <!-- Delivery Window End (Required, military time dropdown) -->
+  <label for="runOutWindowEnd" style="margin-top:6px">Delivery Window End (required)</label>
+  <select id="runOutWindowEnd" required></select>
+
+  <!-- Comments (Required) -->
+  <label for="runOutComments" style="margin-top:6px">Comments (required)</label>
+  <textarea id="runOutComments" rows="3" required placeholder="Add details…"></textarea>
+
+  <!-- Upload (Optional) — placeholder only while we’re local-only -->
+  <label for="runOutFiles" style="margin-top:6px">Upload any applicable detail (optional)</label>
+  <input id="runOutFiles" type="file" multiple
+         accept=".pdf,.eml,.msg,.jpg,.jpeg,.png,.gif,.heic,.tif,.tiff,.bmp" />
+  <div class="small">Note: files won’t be stored until we connect a backend; this is just a placeholder for now.</div>
+</div>
+
 
         <div id="blockRolled" class="catBlock hidden" style="margin-top:10px">
           <h3>Rolled Load</h3>
